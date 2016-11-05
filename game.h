@@ -3,11 +3,13 @@
 
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QMouseEvent>
 
 class Game: public QGraphicsView
 {
 public:
     Game();
+    void mousePressEvent(QMouseEvent *event);
     QGraphicsScene *scene;
 };
 
