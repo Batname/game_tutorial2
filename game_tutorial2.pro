@@ -16,12 +16,14 @@ TEMPLATE = app
 SOURCES += main.cpp \
     tower.cpp \
     game.cpp \
-    bullet.cpp
+    bullet.cpp \
+    enemy.cpp
 
 HEADERS  += \
     game.h \
     bullet.h \
-    tower.h
+    tower.h \
+    enemy.h
 
 FORMS    +=
 

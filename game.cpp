@@ -1,6 +1,7 @@
 #include "game.h"
 #include "tower.h"
 #include "bullet.h"
+#include "enemy.h"
 
 #include <QGraphicsScene>
 
@@ -23,6 +24,10 @@ Game::Game()
     setFixedSize(800, 600);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    // create enemy
+    Enemy * enemy = new Enemy;
+    scene->addItem(enemy);
 }
 
 void Game::mousePressEvent(QMouseEvent *event)
