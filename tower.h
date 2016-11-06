@@ -6,24 +6,23 @@
 #include <QGraphicsItem>
 #include <QPointF>
 #include <QObject>
-#include <QPixmap>
 
-class Tower: public QObject, public QGraphicsPixmapItem
-{
+class Tower:public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
-    Tower(QGraphicsItem *parent = 0);
+    Tower(QGraphicsItem * parent=0);
     double distanceTo(QGraphicsItem * item);
     void fire();
 public slots:
     void aquireTarget();
 private:
-    QGraphicsPolygonItem *attack_area;
+    QGraphicsPolygonItem * attack_area;
     QPointF attack_dest;
+    bool has_target;
     QPixmap qpixmap;
     int half_tower_height;
     int half_tower_width;
-    bool has_target;
+
 };
 
 #endif // TOWER_H

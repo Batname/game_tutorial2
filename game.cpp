@@ -61,7 +61,7 @@ void Game::setCursor(QString filename)
     }
     cursor = new QGraphicsPixmapItem;
 
-    QImage img(":/images/tower.png");
+    QImage img(filename);
     QImage scaled_img = img.scaled(64, 64, Qt::KeepAspectRatio);
     QPixmap qpixmap = QPixmap::fromImage(scaled_img);
 

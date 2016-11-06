@@ -4,7 +4,7 @@
 #include <Qtimer>
 #include <qmath.h>
 
-Bullet::Bullet(QGraphicsItem *parent)
+Bullet::Bullet(QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem(parent)
 {
     // set graphics
     setPixmap(QPixmap(":/images/arrow.png"));
