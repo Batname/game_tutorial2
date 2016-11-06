@@ -1,4 +1,6 @@
 #include "tower.h"
+#include "bullet.h"
+#include "game.h"
 
 #include <QPixmap>
 #include <QVector>
@@ -8,15 +10,21 @@
 #include <QLineF>
 #include <QImage>
 #include <QDebug>
+#include <QPointF>
+#include <QTimer>
 
-Tower::Tower(QGraphicsItem *parent)
+extern Game * game;
+
+Tower::Tower(QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem(parent)
 {
     // set image
     QImage img(":/images/tower.png");
     QImage scaled_img = img.scaled(64, 64, Qt::KeepAspectRatio);
 
     // set the graphics
-    QPixmap qpixmap = QPixmap::fromImage(scaled_img);
+    qpixmap = QPixmap::fromImage(scaled_img);
+    half_tower_height = qpixmap.height() / 2;
+    half_tower_width = qpixmap.width() / 2;
     setPixmap(qpixmap);
 
     // create point vector
@@ -41,7 +49,28 @@ Tower::Tower(QGraphicsItem *parent)
     QPointF poly_center(1.5, 1.5);
     poly_center *= SCALE_FACTOR;
     poly_center = mapToScene(poly_center);
-    QPointF tower_center(x() + qpixmap.height() / 2, y() + qpixmap.width() / 2);
+    QPointF tower_center(x() + half_tower_height, y() + half_tower_width);
     QLineF ln(poly_center, tower_center);
     attack_area->setPos(x() + ln.dx(), y() + ln.dy());
+
+    // connect a timer to attackTarget
+    QTimer * timer = new QTimer;
+    connect(timer, SIGNAL(timeout()),this,SLOT(attackTarget()));
+
+    timer->start(1000);
+
+    // set attack_dest;
+    attack_dest = QPointF(100, 0);
+}
+
+void Tower::attackTarget()
+{
+    Bullet * bullet = new Bullet;
+
+    bullet->setPos(x() + half_tower_height, y() + half_tower_width);
+
+    QLineF ln(QPointF(half_tower_height, half_tower_width), attack_dest);
+    int angle = -1 * ln.angle();
+    bullet->setRotation(angle);
+    game->scene->addItem(bullet);
 }

@@ -19,9 +19,9 @@ SOURCES += main.cpp \
     bullet.cpp
 
 HEADERS  += \
-    tower.h \
     game.h \
-    bullet.h
+    bullet.h \
+    tower.h
 
 FORMS    +=
 
