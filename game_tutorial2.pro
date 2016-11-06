@@ -17,13 +17,15 @@ SOURCES += main.cpp \
     tower.cpp \
     game.cpp \
     bullet.cpp \
-    enemy.cpp
+    enemy.cpp \
+    build_tower_icon.cpp
 
 HEADERS  += \
     game.h \
     bullet.h \
     tower.h \
-    enemy.h
+    enemy.h \
+    build_tower_icon.h
 
 FORMS    +=
 

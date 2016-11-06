@@ -13,6 +13,7 @@
 #include <QDebug>
 #include <QPointF>
 #include <QTimer>
+#include <QPen>
 
 extern Game * game;
 
@@ -35,7 +36,7 @@ Tower::Tower(QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem(parent)
            << QPointF(0,2) << QPointF(0,1);
 
     // scale points
-    int SCALE_FACTOR = 40;
+    int SCALE_FACTOR = 75;
     for (size_t i = 0, n = points.size(); i < n; i++) {
         points[i] *= SCALE_FACTOR;
     }
@@ -45,6 +46,7 @@ Tower::Tower(QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem(parent)
 
     // create the QGraphicsPolygonItem
     attack_area = new QGraphicsPolygonItem(polygon, this);
+    attack_area->setPen(QPen(Qt::DotLine));
 
     // move the polygon
     QPointF poly_center(1.5, 1.5);
