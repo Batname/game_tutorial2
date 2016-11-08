@@ -13,7 +13,13 @@ public:
 
 public slots:
     void move();
+    double getMaxRange();
+    double getDistanceTraveled();
+    void setMaxRange(double rng);
+    void setDistanceTraveled(double dist);
 private:
+    double max_range;
+    double distance_traveled;
 };
 
 #endif // BULLET_H

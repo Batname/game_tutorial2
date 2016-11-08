@@ -4,5 +4,11 @@
         <file>arrow.png</file>
         <file>enemy.png</file>
         <file>tower_icon.png</file>
+        <file>a1.png</file>
+        <file>a2.png</file>
+        <file>a3.png</file>
+        <file>brown_tower.png</file>
+        <file>green_tower.png</file>
+        <file>red_tower.png</file>
     </qresource>
 </RCC>

@@ -12,20 +12,13 @@
 #include <QTimer>
 #include <QGraphicsRectItem>
 #include <QImage>
+#include <QHash>
+#include <QString>
 
 extern Game * game;
 
 #include <QDebug>
 Tower::Tower(QGraphicsItem *parent):QObject(), QGraphicsPixmapItem(parent){
-    // set image
-    QImage img(":/images/tower.png");
-    QImage scaled_img = img.scaled(64, 64, Qt::KeepAspectRatio);
-
-    // set the graphics
-    qpixmap = QPixmap::fromImage(scaled_img);
-    half_tower_height = qpixmap.height() / 2;
-    half_tower_width = qpixmap.width() / 2;
-    setPixmap(qpixmap);
 
     // create points vector
     QVector<QPointF> points;
@@ -38,6 +31,10 @@ Tower::Tower(QGraphicsItem *parent):QObject(), QGraphicsPixmapItem(parent){
         points[i] *= SCALE_FACTOR;
     }
 
+    // set tower size
+    tower_size.insert("half_width", 64);
+    tower_size.insert("half_height", 64);
+
     // create the QGraphicsPolygonItem
     attack_area = new QGraphicsPolygonItem(QPolygonF(points),this);
     attack_area->setPen(QPen(Qt::DotLine));
@@ -46,14 +43,9 @@ Tower::Tower(QGraphicsItem *parent):QObject(), QGraphicsPixmapItem(parent){
     QPointF poly_center(1.5,1.5);
     poly_center *= SCALE_FACTOR;
     poly_center = mapToScene(poly_center);;
-    QPointF tower_center(x()+44,y()+44);
+    QPointF tower_center(x()+64,y()+64);
     QLineF ln(poly_center,tower_center);
     attack_area->setPos(x()+ln.dx(),y()+ln.dy());
-
-    // connect a timer to attack_target/aquire_target
-    QTimer * timer = new QTimer();
-    connect(timer,SIGNAL(timeout()),this,SLOT(aquireTarget()));
-    timer->start(1000);
 
     // set attack_dest
     attack_dest = QPointF(0,0);
@@ -67,14 +59,22 @@ double Tower::distanceTo(QGraphicsItem *item){
 }
 
 void Tower::fire(){
-    Bullet * bullet = new Bullet();
-    bullet->setPos(x()+44,y()+44);
+    int half_width = getTowerSize()["half_width"];
+    int half_height = getTowerSize()["half_height"];
 
-    QLineF ln(QPointF(x()+44,y()+44),attack_dest);
+    Bullet * bullet = new Bullet();
+    bullet->setPos(x()+half_width,y()+half_height);
+
+    QLineF ln(QPointF(x()+half_width,y()+half_height),attack_dest);
     int angle = -1 * ln.angle();
 
     bullet->setRotation(angle);
     game->scene->addItem(bullet);
+}
+
+QHash<QString, int> Tower::getTowerSize()
+{
+    return tower_size;
 }
 
 void Tower::aquireTarget(){

@@ -24,3 +24,23 @@ void Bullet::move() {
 
     setPos(x() + dx, y() + dy);
 }
+
+double Bullet::getMaxRange()
+{
+
+}
+
+double Bullet::getDistanceTraveled()
+{
+
+}
+
+void Bullet::setMaxRange(double rng)
+{
+
+}
+
+void Bullet::setDistanceTraveled(double dist)
+{
+
+}

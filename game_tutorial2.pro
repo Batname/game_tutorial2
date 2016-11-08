@@ -18,14 +18,24 @@ SOURCES += main.cpp \
     game.cpp \
     bullet.cpp \
     enemy.cpp \
-    build_tower_icon.cpp
+    build_brown_tower_icon.cpp \
+    brown_tower.cpp \
+    build_green_tower_icon.cpp \
+    green_tower.cpp \
+    build_red_tower_icon.cpp \
+    red_tower.cpp
 
 HEADERS  += \
     game.h \
     bullet.h \
     tower.h \
     enemy.h \
-    build_tower_icon.h
+    build_brown_tower_icon.h \
+    brown_tower.h \
+    build_green_tower_icon.h \
+    green_tower.h \
+    build_red_tower_icon.h \
+    red_tower.h
 
 FORMS    +=
 
