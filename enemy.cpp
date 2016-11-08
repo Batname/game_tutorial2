@@ -5,13 +5,12 @@
 #include <QLineF>
 #include <qmath.h>
 
-Enemy::Enemy(QGraphicsItem *parent)
+Enemy::Enemy(QList<QPointF> points_to_follow, QGraphicsItem *parent) : point_index(0)
 {
     setPixmap(QPixmap(":/images/enemy.png"));
 
     // set points
-    points << QPointF(200, 200) << QPointF(400, 200);
-    point_index = 0;
+    points << points_to_follow;
     dest = points[0];
     rotateToPoint(dest);
 

@@ -4,14 +4,14 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include <QList>
-#include <QpointF>
+#include <QPointF>
 #include <QGraphicsItem>
 
 class Enemy: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    Enemy(QGraphicsItem * parent = 0);
+    Enemy(QList<QPointF> points_to_follow, QGraphicsItem * parent = 0);
     void rotateToPoint(QPointF p);
 
 public slots:

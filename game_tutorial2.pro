@@ -26,7 +26,6 @@ SOURCES += main.cpp \
     red_tower.cpp
 
 HEADERS  += \
-    game.h \
     bullet.h \
     tower.h \
     enemy.h \
@@ -35,7 +34,8 @@ HEADERS  += \
     build_green_tower_icon.h \
     green_tower.h \
     build_red_tower_icon.h \
-    red_tower.h
+    red_tower.h \
+    game.h
 
 FORMS    +=
 
